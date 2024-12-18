@@ -1,0 +1,26 @@
+<% layout('layout') %>
+<h2>Admin Paneli</h2>
+
+<table>
+    <tr>
+        <th>Başlık</th>
+        <th>Sanatçı</th>
+        <th>Durum</th>
+        <th>İşlem</th>
+    </tr>
+    <% songs.forEach((song, index) => { %>
+        <tr>
+            <td><%= song.title %></td>
+            <td><%= song.artist %></td>
+            <td><%= song.status %></td>
+            <td>
+                <form action="/admin/review" method="POST">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <button type="submit" name="status" value="approved">Onayla</button>
+                    <button type="submit" name="status" value="rejected">Reddet</button>
+                </form>
+            </td>
+        </tr>
+    <% }); %>
+</table>
+<a href="/dashboard">Geri</a>
